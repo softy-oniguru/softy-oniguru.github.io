@@ -1,0 +1,156 @@
+.container, .container * {
+  box-sizing: border-box;
+  letter-spacing: -0.08px;
+  font-family: Montserrat;
+  overflow: hidden;
+}
+
+input, select, textarea, button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  background: #f9f9f9;
+  border-top-left-radius: 64px;
+  border-top-right-radius: 64px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+.title {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+}
+
+.field {
+  display: flex;
+  position: relative;
+  min-width: 320px;
+  padding: 16px 0 8px 0;
+  border-bottom: .25px solid rgba(64, 64, 64, .25);
+}
+
+.label {
+  display: flex;
+  position: relative;
+  width: 96px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  overflow: hidden;
+}
+
+.value {
+  position: relative;
+  width: 25vw;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.segmented-control {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  min-width: 320px;
+  width: 25vw;
+  height: 32px;
+  margin: 16px 0 8px 0;
+  background: rgba(128, 128, 128, 10%);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.indicator {
+  position: absolute;
+  left: 4px;
+  height: 80%;
+  width: calc(50% - 4px);
+  background-color: #000; /* #90f is my 10√3*/
+  border-radius: 8px;
+  transition: transform .25s ease;
+}
+
+.segment {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  /* flex-grow: 1; */
+  padding: 6px 48px;
+  cursor: pointer;
+  background: none;
+  font-size: 12px;
+  font-weight: 400;
+  transition: color .25s ease;
+} .segment.active { color: #fff; }
+
+.toggle {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  background: rgba(128, 128, 128, 0.16);
+  transition: background 0.25s ease;
+  cursor: pointer;
+} .toggle.active { background: #34c759; }
+
+.knob {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 4px;
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 8%);
+  transition: transform 0.3s ease;
+} .toggle.active .knob { transform: translateX(100%); }
+
+.scope {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.submit {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 128px;
+  height: 48px;
+  margin: 8px 0;
+  cursor: pointer;
+  background: rgba(128, 128, 128, 12.5%);
+  border: none;
+  border-radius: 12px;
+}

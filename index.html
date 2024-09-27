@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Тестирование</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" />
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body>
+		<div class="container">
+			<span class="title">Тестирование</span>
+
+			<div class="field">
+				<span class="label">ID</span>
+				<input type="text" class="value" id="id" placeholder="ID вашей анкеты" />
+			</div> <div class="field">
+				<span class="label">Логин</span>
+				<input type="text" class="value" id="login" placeholder="Выданный вам логин" />
+			</div> <div class="field">
+				<span class="label">ФИО</span>
+				<input type="text" class="value" id="username" placeholder="Укажите ваше ФИО" />
+			</div> <div class="field">
+				<span class="label">Колледж</span>
+				<input type="text" class="value" id="college" placeholder="Название колледжа" />
+			</div> <div class="field">
+				<span class="label">Район</span>
+				<input type="text" class="value" id="district" placeholder="Название района" />
+			</div> <div class="field">
+				<span class="label">Раздел</span>
+				<input type="text" class="value" id="name" placeholder="Полное имя колледжа" />
+			</div>
+
+			<div class="segmented-control">
+				<div class="indicator" id="indicator"></div>
+				<button class="segment" onclick="selectSegment(0)">Группа А</button>
+				<button class="segment" onclick="selectSegment(1)">Группа Б</button>
+			</div>
+
+			<span class="scope">Пройти все тесты на правильные ответы
+				<div class="toggle" id="forced" onclick="toggleKnob(this)">
+					<div class="knob"></div>
+				</div>
+			</span>
+
+			<button class="submit" id="submit" onclick="handleSubmit()">Отправить</button>
+		</div>
+
+		<script>
+			function selectSegment(id) {
+				const indicator = document.getElementById('indicator');
+				
+				if (id == 0) {indicator.style.transform = '';}
+				else {indicator.style.transform = 'translateX(100%)';}
+				
+				const segments = document.querySelectorAll('.segment');
+				segments.forEach(segment => { segment.classList.remove('active'); });
+				segments[id].classList.add('active');
+			}; selectSegment(0);
+
+			function toggleKnob(element) { element.classList.toggle('active'); }
+
+			async function handleSubmit() {
+				const id = document.getElementById('id').value;
+				const login = document.getElementById('login').value;
+				const username = document.getElementById('username').value;
+				const name = document.getElementById('name').value;
+				const college = document.getElementById('college').value;
+				const district = document.getElementById('district').value;
+				const group = document.querySelector('.segment.active').textContent;
+				const forced = document.getElementById('forced').classList.contains('active')
+				
+				if (!id || !login || !name || !college || !district) {
+					alert("Пожалуйста, заполните все поля.");
+				return; }
+				
+				const data = {
+					id: parseInt(id),
+					group: group,
+					username: username,
+					login: login, password: "hashed",
+					result1: [], result2: [],
+					organization: college,
+					district: district,
+					name: name,
+				};
+				
+				const response = await fetch("https://cors-anywhere.herokuapp.com/https://attest.edu-penza.ru/studenttest/save", {
+					method: "POST",
+					<!-- mode: 'no-cors', -->
+					headers: {"Content-Type":"application/json"},
+					body: JSON.stringify(data)
+				});
+
+				if (response.status == 0) { window.location.href = "https://attest.edu-penza.ru/end"; }
+				else { alert("Ошибка отправки данных"); }
+
+				<!-- alert(`- ФИО: ${name}\n- Колледж: ${college}\n- Группа: ${group}\n- Выполненный? ${forced ? 'да' : 'нет'}`); -->
+			};
+		</script>
+	</body>
+</html>
