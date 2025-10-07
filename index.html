@@ -29,6 +29,9 @@
 			</div> <div class="field">
 				<span class="label">Раздел</span>
 				<input type="text" class="value" id="name" placeholder="Полное имя колледжа" />
+			</div> <div class="field">
+				<span class="label">Специальность</span>
+				<input type="text" class="value" id="spec" placeholder="Специальность" />
 			</div>
 
 			<div class="segmented-control">
@@ -65,6 +68,7 @@
 				const login = document.getElementById('login').value;
 				const username = document.getElementById('username').value;
 				const name = document.getElementById('name').value;
+				const spec = document.getElementById('spec').value;
 				const college = document.getElementById('college').value;
 				const district = document.getElementById('district').value;
 				const group = document.querySelector('.segment.active').textContent;
@@ -83,6 +87,7 @@
 					result2: [Array(103).fill('0')],
 					organization: college,
 					district: district,
+					spec: spec,
 					name: name,
 				};
 				
